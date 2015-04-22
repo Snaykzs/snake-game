@@ -1,5 +1,5 @@
-Apple has
+// Apple has
 
-size
-random location
-display
+// size
+// random location
+// display
