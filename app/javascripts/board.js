@@ -5,14 +5,21 @@
 // borders
 
 $(document).ready(function() {
-  generateBoard(20);
+  board = new Board(20);
+  board.generateBoard();
 
 });
 
-function generateBoard(size) {
-  for(var i=0; i <size; i++) {
-    for(var j=0; j<size; j++) {
+
+
+Board.prototype.generateBoard = function() {
+  for(var i = 0; i < this.size; i++) {
+    for(var j = 0; j < this.size; j++) {
       $('.main-board').append("<div class='cell'></div>")
     }
   }
+}
+
+function Board(size) {
+  this.size = size;
 }
