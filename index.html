@@ -12,17 +12,25 @@
   <script src="app/javascripts/apple.js"></script>
   <script src="app/javascripts/snake.js"></script>
   <script src="app/javascripts/game.js"></script>
+  <script src="app/javascripts/sound.js"></script>
 
 
 </head>
 <body>
-  <header>
-    Welcome to Snayksz
-  </header>
+  <div class="container">
+    <header>
+      Welcome to Snayksz
+    </header>
 
-  <div class="main-board">
+    <div class="score">0</div>
+    <div class="main-board">
+
+    </div>
+
+    <audio class="audioStart" controls loop preload="none">
+      <source src="audio/tyt_start.mp3" type="audio/mpeg">
+    </audio>
 
   </div>
-
   </body>
   </html>
