@@ -1,4 +1,4 @@
-function Game()
+function Game ()
 {
 	this.snake = new Snake();
 	this.lose = false;
@@ -8,7 +8,8 @@ function Game()
 	this.apple.generateApple();
 }
 
-Game.prototype.Turn = function () {
+Game.prototype.Turn = function () 
+{
 	var lastRowCoord = this.snake.snakeArray[0][0];
 	var lastColCoord = this.snake.snakeArray[0][1];
 	this.board.renderSnakeCoords(this.snake.snakeArray);
@@ -32,7 +33,7 @@ Game.prototype.CheckLose = function ()
 	if (snakeHeadRow < 0 || snakeHeadRow > 49 || snakeHeadCol < 0 || snakeHeadCol > 49)
 	{
 		this.lose = true;
-		console.log("you lose!");
+		alert("you lose!");
 	}
 }
 
@@ -53,9 +54,11 @@ Game.prototype.LoseBySelfTouch = function ()
 
 }
 
-Game.prototype.Start = function () {
+Game.prototype.Start = function () 
+{
 	var thisGame = this;
-	var startGame = setInterval(function (){
+	var startGame = setInterval(function ()
+	{
 		thisGame.Turn();
 		if (thisGame.lose === true)
 		{
@@ -63,7 +66,6 @@ Game.prototype.Start = function () {
 		}
 	}, 50);
 }
-
 
 function Snake () 
 {
@@ -181,19 +183,12 @@ Snake.prototype.EatApple = function (apple)
 		console.log("your score is now " + this.score);
 		this.eatenApple = true;
 		return true;
-
 	}
 	return false;
 }
-
-
 	// driver code
-$(document).ready(function() {
-
+$(document).ready(function () 
+{
 var game = new Game();
 game.Start();
-
 });	
-
-
-
