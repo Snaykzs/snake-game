@@ -5,30 +5,6 @@ function Snake ()
 	this.score = 0;
 	this.eatenApple = false;
 }
-
-Snake.prototype.GetKeyStroke = function () 
-{
-	var thisSnake = this;
-		$(document).keydown(function (e) 
-		{
-			switch(e.which)
-			{
-				case 38:
-				thisSnake.direction = 1;
-				break;
-				case 39:
-				thisSnake.direction = 2;
-				break;
-				case 40:
-				thisSnake.direction = 3;
-				break;
-				case 37:
-				thisSnake.direction = 4;
-				break;
-			}
-
-		});
-}
 	// move
 Snake.prototype.Move = function (apple) 
 {
