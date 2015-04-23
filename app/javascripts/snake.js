@@ -14,6 +14,12 @@ Game.prototype.Turn = function () {
 	this.board.renderSnakeCoords(this.snake.snakeArray);
 	this.snake.GetKeyStroke();
 	this.snake.Move(this.apple);
+	if (this.snake.eatenApple)
+	{
+		this.board.disActivateApple(this.apple.coordinates[0],this.apple.coordinates[1]);
+		this.apple.generateApple();
+		this.snake.eatenApple = false;
+	}
 	this.board.disActivateCell(lastRowCoord, lastColCoord);
 	console.log(this.snake.snakeArray);
 	this.CheckLose();
@@ -38,7 +44,7 @@ Game.prototype.Start = function () {
 		{
 			clearInterval(startGame);
 		}
-	}, 200);
+	}, 50);
 }
 
 
@@ -47,6 +53,7 @@ function Snake ()
 	this.snakeArray = [[0,0], [0,1], [0,2]];
 	this.direction = 2;
 	this.score = 0;
+	this.eatenApple = false;
 }
 
 Snake.prototype.GetKeyStroke = function () 
@@ -158,7 +165,9 @@ Snake.prototype.EatApple = function (apple)
 		console.log("eaten apple");
 		this.score += 10;
 		console.log("your score is now " + this.score);
+		this.eatenApple = true;
 		return true;
+
 	}
 	return false;
 }
