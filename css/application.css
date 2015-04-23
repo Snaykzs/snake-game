@@ -13,7 +13,7 @@
   background-color: #F1F1F1;
   border-radius: 3px;
   box-shadow: 0px 4px 1px -1px #C1C1C1;
-  padding: 12px;
+  padding: 5px;
 }
 
 .cell {
@@ -36,6 +36,9 @@ header{
   margin: 0 auto;
   width: 100%;
   text-align: center;
+  text-shadow: 1px 1px 1px #9D9D9D, 3px 3px 5px green;
+  font-size: 20px;
+  font-family: 'Righteous', cursive;
 }
 .score{
   margin: 0 auto;
@@ -43,11 +46,18 @@ header{
   border: 1px solid red;
   text-align: center;
   padding: 12px;
-
   border: 1px solid #E5E5E5;
   background-color: #F1F1F1;
   border-radius: 4px;
   box-shadow: 0px 4px 1px -1px #C1C1C1;
+}
+.img-apple img{
+  width: 50px;
+  margin-bottom: -15px;
+}
+.img-snake img{
+  width: 70px;
+  margin-bottom: -20px;
 }
 
 
