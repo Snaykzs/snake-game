@@ -21,8 +21,8 @@ Game.prototype.Turn = function () {
 		this.snake.eatenApple = false;
 	}
 	this.board.disActivateCell(lastRowCoord, lastColCoord);
-	console.log(this.snake.snakeArray);
 	this.CheckLose();
+	this.LoseBySelfTouch();
 }
 
 Game.prototype.CheckLose = function () 
@@ -34,6 +34,23 @@ Game.prototype.CheckLose = function ()
 		this.lose = true;
 		console.log("you lose!");
 	}
+}
+
+Game.prototype.LoseBySelfTouch = function ()
+{
+	var snakeHeadRow = this.snake.snakeArray[this.snake.snakeArray.length-1][0];
+	var snakeHeadCol = this.snake.snakeArray[this.snake.snakeArray.length-1][1];
+	for (var i = 0; i < this.snake.snakeArray.length - 2; i++)
+	{
+		var row = this.snake.snakeArray[i][0];
+		var col = this.snake.snakeArray[i][1];
+		if (snakeHeadRow === row && snakeHeadCol === col)
+		{
+			this.lose = true;
+			alert("you lose!");
+		}
+	}
+
 }
 
 Game.prototype.Start = function () {
@@ -84,7 +101,6 @@ Snake.prototype.Move = function (apple)
 {
 	var headRow = this.snakeArray[this.snakeArray.length-1][0];
 	var headCol = this.snakeArray[this.snakeArray.length-1][1];
-	console.log(headRow + "," + headCol);
 		switch (this.direction)
 		{	
 			// up
@@ -96,8 +112,7 @@ Snake.prototype.Move = function (apple)
 					var newHead = [newHeadRow, newHeadCol];
 					this.snakeArray.push(newHead);
 				}
-				var testCell = this.snakeArray.shift();
-				console.log(testCell);
+				this.snakeArray.shift();
 				var newHeadRow = headRow -1;
 				var newHeadCol = headCol + 0;
 				var newHead = [newHeadRow, newHeadCol];
@@ -124,7 +139,6 @@ Snake.prototype.Move = function (apple)
 				{
 					var newHeadRow = headRow + 0;
 					var newHeadCol = headCol + 1;
-					console.log(headRow + "," + headCol);
 					var newHead = [newHeadRow, newHeadCol];
 					this.snakeArray.push(newHead);
 				}
