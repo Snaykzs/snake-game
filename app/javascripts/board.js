@@ -19,20 +19,25 @@ function Board(size) {
 }
 
 Board.prototype.activateCell = function(r,c){
-  $("div#r_" + r + "-" + "c_" + c ).addClass("active")
+  $("div#r_" + r + "-" + "c_" + c ).addClass("active");
 };
 
 Board.prototype.disActivateCell = function(r,c){
-  $("div#r_" + r + "-" + "c_" + c ).removeClass("active")
+  $("div#r_" + r + "-" + "c_" + c ).removeClass("active");
 };
 
 Board.prototype.activateApple = function(r,c){
-  $("div#r_" + r + "-" + "c_" + c ).addClass("apple")
+  $("div#r_" + r + "-" + "c_" + c ).addClass("apple");
 };
 
-Board.prototype.test = function(){
-  return "Hey Im here";
-}
+Board.prototype.disActivateApple = function(r,c){
+    $("div#r_" + r + "-" + "c_" + c ).removeClass("apple");
+};
+
+Board.prototype.isSnake = function(r, c){
+  return $("div#r_" + r + "-" + "c_" + c ).hasClass('active');
+};
+
 
 //
 // isActivecell(); - determines whether cell should be active (contains part of snake)
