@@ -1,9 +1,8 @@
 
-$(document).ready(function() {
-  board = new Board(50);
-  board.generateBoard();
-
-});
+// $(document).ready(function() {
+//   board = new Board(50);
+//   board.generateBoard();
+// });
 
 Board.prototype.generateBoard = function() {
   for(var i = 0; i < this.size; i++) {
@@ -36,6 +35,16 @@ Board.prototype.disActivateApple = function(r,c){
 
 Board.prototype.isSnake = function(r, c){
   return $("div#r_" + r + "-" + "c_" + c ).hasClass('active');
+};
+
+Board.prototype.renderSnakeCoords = function (snakeArray) {
+  for (var i = 0; i < snakeArray.length; i++)
+  {
+    var rowCell = snakeArray[i][0];
+    var colCell = snakeArray[i][1];
+    this.activateCell(rowCell, colCell);
+  }
+
 };
 
 

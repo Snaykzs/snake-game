@@ -20,7 +20,7 @@ Apple.prototype.generateApple = function(){
     apple.activateApple(appleRow, appleColumn);
 };
 
-$(document).ready(function(){
-    var apple = new Apple();
-    apple.generateApple();
-})
+// $(document).ready(function(){
+//     var apple = new Apple();
+//     apple.generateApple();
+// })

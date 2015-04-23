@@ -3,13 +3,19 @@ function Game()
 	this.snake = new Snake();
 	this.lose = false;
 	this.apple = new Apple();
+	this.board = new Board(50);
+	this.board.generateBoard();
 	this.apple.generateApple();
-	console.log(this.apple);
 }
 
 Game.prototype.Turn = function () {
+	var lastRowCoord = this.snake.snakeArray[0][0];
+	var lastColCoord = this.snake.snakeArray[0][1];
+	this.board.renderSnakeCoords(this.snake.snakeArray);
 	this.snake.GetKeyStroke();
 	this.snake.Move(this.apple);
+	this.board.disActivateCell(lastRowCoord, lastColCoord);
+	console.log(this.snake.snakeArray);
 	this.CheckLose();
 }
 
@@ -17,7 +23,7 @@ Game.prototype.CheckLose = function ()
 {
 	var snakeHeadRow = this.snake.snakeArray[this.snake.snakeArray.length-1][0];
 	var snakeHeadCol = this.snake.snakeArray[this.snake.snakeArray.length-1][1];
-	if (snakeHeadRow < 0 || snakeHeadRow > 50 || snakeHeadCol < 0 || snakeHeadCol > 50)
+	if (snakeHeadRow < 0 || snakeHeadRow > 49 || snakeHeadCol < 0 || snakeHeadCol > 49)
 	{
 		this.lose = true;
 		console.log("you lose!");
@@ -32,13 +38,13 @@ Game.prototype.Start = function () {
 		{
 			clearInterval(startGame);
 		}
-	}, 50);
+	}, 200);
 }
 
 
 function Snake () 
 {
-	this.snakeArray = [[0,1], [0,2], [0,3]];
+	this.snakeArray = [[0,0], [0,1], [0,2]];
 	this.direction = 2;
 	this.score = 0;
 }
@@ -71,11 +77,11 @@ Snake.prototype.Move = function (apple)
 {
 	var headRow = this.snakeArray[this.snakeArray.length-1][0];
 	var headCol = this.snakeArray[this.snakeArray.length-1][1];
+	console.log(headRow + "," + headCol);
 		switch (this.direction)
 		{	
 			// up
 			case 1:
-				console.log("moving up");
 				if (this.EatApple(apple))
 				{
 					var newHeadRow = headRow -1;
@@ -83,7 +89,8 @@ Snake.prototype.Move = function (apple)
 					var newHead = [newHeadRow, newHeadCol];
 					this.snakeArray.push(newHead);
 				}
-				this.snakeArray.shift();
+				var testCell = this.snakeArray.shift();
+				console.log(testCell);
 				var newHeadRow = headRow -1;
 				var newHeadCol = headCol + 0;
 				var newHead = [newHeadRow, newHeadCol];
@@ -91,7 +98,6 @@ Snake.prototype.Move = function (apple)
 			break;
 			// down
 			case 3:
-				console.log("moving down");
 				if (this.EatApple(apple))
 				{
 					var newHeadRow = headRow + 1;
@@ -107,10 +113,8 @@ Snake.prototype.Move = function (apple)
 			break;
 			// right
 			case 2:
-				console.log("moving right");
 				if (this.EatApple(apple))
 				{
-					console.log("eaten apple");
 					var newHeadRow = headRow + 0;
 					var newHeadCol = headCol + 1;
 					console.log(headRow + "," + headCol);
@@ -125,7 +129,6 @@ Snake.prototype.Move = function (apple)
 			break;
 			// left
 			case 4:
-				console.log("moving left");
 				if (this.EatApple(apple))
 				{
 					var newHeadRow = headRow + 0;
@@ -152,6 +155,7 @@ Snake.prototype.EatApple = function (apple)
 
 	if (appleRow === headRow && appleCol === headCol)
 	{
+		console.log("eaten apple");
 		this.score += 10;
 		console.log("your score is now " + this.score);
 		return true;
@@ -159,6 +163,14 @@ Snake.prototype.EatApple = function (apple)
 	return false;
 }
 
+
 	// driver code
+$(document).ready(function() {
+
 var game = new Game();
 game.Start();
+
+});	
+
+
+
