@@ -19,17 +19,22 @@ Game.prototype.Turn = function ()
 {
 	var lastRowCoord = this.snake.snakeArray[0][0];
 	var lastColCoord = this.snake.snakeArray[0][1];
+	var headRow = this.snake.snakeArray[this.snake.snakeArray.length-2][0];
+  	var headCol = this.snake.snakeArray[this.snake.snakeArray.length-2][1];
 	this.board.renderSnakeCoords(this.snake.snakeArray);
+	this.board.renderSnakeHead(this.snake.snakeArray);
 	this.GetKeyStroke();
 	this.snake.Move(this.apple);
 	if (this.snake.eatenApple === true)
 	{
 		this.board.disActivateApple(this.apple.coordinates[0],this.apple.coordinates[1]);
+		this.board.disActivateHeadCell(headRow,headCol);
 		this.generateApple();
 		this.snake.eatenApple = false;
 		this.board.displayScore(this.snake.score);
 	}
 	this.board.disActivateCell(lastRowCoord, lastColCoord);
+	this.board.disActivateHeadCell(headRow,headCol);
 	this.CheckLose();
 	this.LoseBySelfTouch();
 }

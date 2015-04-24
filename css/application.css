@@ -31,6 +31,12 @@
   /*border: 1px solid #ccc;*/
 }
 
+.head {
+  background-image: url("../images/eugene.png");
+  background-size: contain;
+  /*border: 1px solid #ccc;*/
+}
+
 .apple {
 /*  background-color: red;*/
   background-image: url("apple.png");
