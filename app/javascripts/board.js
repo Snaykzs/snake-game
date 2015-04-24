@@ -18,7 +18,7 @@ function Board(size) {
 }
 
 Board.prototype.displayScore = function (score) {
-  $('.score').text("Your score: " + score);
+  $('.score').text("Eugene's score: " + score);
 }
 
 Board.prototype.activateCell = function(r,c){
