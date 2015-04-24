@@ -1,6 +1,6 @@
 function Snake () 
 {
-	this.snakeArray = [[0,0], [0,1], [0,2]];
+	this.snakeArray = [[0,0], [0,1], [0,2], [0,3], [0,4]];
 	this.direction = 2;
 	this.score = 0;
 	this.eatenApple = false;
