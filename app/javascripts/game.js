@@ -8,6 +8,7 @@ game.Start();
 function Game ()
 {
 	this.sound = new Sound();
+	this.loseSound = new LoseSound();
 	this.snake = new Snake();
 	this.lose = false;
 	this.board = new Board(30);
@@ -84,6 +85,7 @@ Game.prototype.CheckLose = function ()
 		this.lose = true;
 		alert("you lose!");
 		this.sound.stopAudio();
+		this.loseSound.startAudio();
 	}
 }
 
@@ -100,6 +102,7 @@ Game.prototype.LoseBySelfTouch = function ()
 			this.lose = true;
 			alert("you lose!");
 			this.sound.stopAudio();
+			this.loseSound.startAudio();
 			thisGame.requestStart();
 		}
 	}
