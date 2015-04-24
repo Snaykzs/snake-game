@@ -27,13 +27,16 @@
 
 
 .active {
-  background-color: black;
+  background-image: url("../images/snakeskin.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   /*border: 1px solid #ccc;*/
 }
 
 .head {
   background-image: url("../images/eugene.png");
   background-size: contain;
+  background-repeat: no-repeat;
   /*border: 1px solid #ccc;*/
 }
 
