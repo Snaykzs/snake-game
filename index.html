@@ -5,6 +5,7 @@
   <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/application.css">
+  <link rel="stylesheet" type="text/css" href="css/sound.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="app/javascripts/board.js"></script>
@@ -23,6 +24,42 @@
       <h2><span class="img-apple"><img src="images/apple.png" /></span> Welcome to Snayksz <span class="img-snake"><img src="images/snake.png" /></span></h2>
     </header>
 
+    <div class="control-audio">
+      <header><h3>Sound Control</h3></header>
+      <div class="row alert-success"></div>
+      <div class="row">
+        <div class="each-control">
+          <p>
+            <button class="btn-control btn load">Load Audio</button>
+            <button class="btn-control btn start">Start Audio</button>
+            <button class="btn-control btn back">&lt;&lt;</button>
+            <button class="btn-control btn forward"> &gt;&gt;</button>
+          </p>
+        </div>
+        <div class="each-control">
+          <p>
+            <button class="btn-control btn pause">Pause Audio</button>
+            <button class="btn-control btn stop">Stop Audio</button>
+          </p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="each-control">
+          <p>
+            <button class="btn-control btn volume volume-up">Volume Up</button>
+            <button class="btn-control btn volume volume-down">Volume Down</button>
+          </p>
+        </div>
+        <div class="each-control">
+          <p>
+            <button class="btn-control btn mute">Toggle Volume On/Off</button>
+          </p>
+        </div>
+ 
+      </div>
+  </div>
+
     <div class="score">Your score: 0</div>
     <div class="main-board">
 
@@ -30,6 +67,9 @@
 
     <audio class="audioStart" controls loop preload="none" hidden="true">
       <source src="audio/tyt_start.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audioEnd" controls preload="none" hidden="true">
+      <source src="audio/gf_lose.mp3" type="audio/mpeg">
     </audio>
 
   </div>
