@@ -1,8 +1,9 @@
 	// driver code
 $(document).ready(function ()
 {
-var game = new Game();
-game.Start();
+	$('.score').text('Press Spacebar to Start!');
+	var game = new Game();
+	game.openingSequence(game);
 });
 
 function Game ()
@@ -15,6 +16,19 @@ function Game ()
 	this.board.generateBoard();
 	this.apple = new Apple(this.board.size);
 	this.generateApple();
+}
+
+Game.prototype.openingSequence = function (game)
+{
+	var thisGame = game;
+	$(document).keyup(function(e)
+			{
+				if (e.which === 32)
+				{
+					$('.score').text("Eugene's score: 0")
+					thisGame.Start();
+				}
+			});
 }
 
 Game.prototype.Turn = function ()
@@ -78,14 +92,15 @@ Game.prototype.generateApple = function()
 
 Game.prototype.CheckLose = function ()
 {
+	var thisGame = this;
 	var snakeHeadRow = this.snake.snakeArray[this.snake.snakeArray.length-1][0];
 	var snakeHeadCol = this.snake.snakeArray[this.snake.snakeArray.length-1][1];
 	if (snakeHeadRow < 0 || snakeHeadRow > this.board.size - 1 || snakeHeadCol < 0 || snakeHeadCol > this.board.size -1)
 	{
 		this.lose = true;
-		alert("you lose!");
 		this.sound.stopAudio();
 		this.loseSound.startAudio();
+		this.requestStart();
 	}
 }
 
@@ -100,10 +115,9 @@ Game.prototype.LoseBySelfTouch = function ()
 		if (snakeHeadRow === row && snakeHeadCol === col)
 		{
 			this.lose = true;
-			alert("you lose!");
 			this.sound.stopAudio();
 			this.loseSound.startAudio();
-			thisGame.requestStart();
+			this.requestStart();
 		}
 	}
 
@@ -111,13 +125,20 @@ Game.prototype.LoseBySelfTouch = function ()
 
 Game.prototype.requestStart = function()
 {
-	var thisGame = this;
-	thisGame.Start();
+			$('.score').text('Eugene lost! Press Spacebar to restart!');
+			$(document).keyup(function(e)
+			{
+				if (e.which === 32)
+				{
+				location.reload();
+				}
+			});
 }
 
 Game.prototype.Start = function ()
 {
 	var thisGame = this;
+	thisGame.sound.startAudio();
 	var startGame = setInterval(function ()
 	{
 		thisGame.Turn();
@@ -127,3 +148,4 @@ Game.prototype.Start = function ()
 		}
 	}, 70);
 }
+
