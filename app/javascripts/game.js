@@ -1,12 +1,15 @@
 	// driver code
-$(document).ready(function () 
+$(document).ready(function ()
 {
-var game = new Game();
-game.Start();
-});	
+	$('.score').text('Press Spacebar to Start!');
+	var game = new Game();
+	game.openingSequence(game);
+});
 
 function Game ()
 {
+	this.sound = new Sound();
+	this.loseSound = new LoseSound();
 	this.snake = new Snake();
 	this.lose = false;
 	this.board = new Board(30);
@@ -15,7 +18,20 @@ function Game ()
 	this.generateApple();
 }
 
-Game.prototype.Turn = function () 
+Game.prototype.openingSequence = function (game)
+{
+	var thisGame = game;
+	$(document).keyup(function(e)
+			{
+				if (e.which === 32)
+				{
+					$('.score').text("Eugene's score: 0")
+					thisGame.Start();
+				}
+			});
+}
+
+Game.prototype.Turn = function ()
 {
 	var lastRowCoord = this.snake.snakeArray[0][0];
 	var lastColCoord = this.snake.snakeArray[0][1];
@@ -42,7 +58,7 @@ Game.prototype.Turn = function ()
 Game.prototype.GetKeyStroke = function ()
 {
 	var thisSnake = this.snake;
-		$(document).keydown(function (e) 
+		$(document).keydown(function (e)
 		{
 			switch(e.which)
 			{
@@ -68,20 +84,23 @@ Game.prototype.generateApple = function()
 	var thisBoard = this.board;
     this.apple = new Apple(this.board.size);
     if (thisBoard.isSnake(this.apple.row, this.apple.column))
-		{ 
+		{
 		    this.generateApple(); // this is cool
 		};
-    this.board.activateApple(this.apple.row, this.apple.column); 
+    this.board.activateApple(this.apple.row, this.apple.column);
 };
 
-Game.prototype.CheckLose = function () 
+Game.prototype.CheckLose = function ()
 {
+	var thisGame = this;
 	var snakeHeadRow = this.snake.snakeArray[this.snake.snakeArray.length-1][0];
 	var snakeHeadCol = this.snake.snakeArray[this.snake.snakeArray.length-1][1];
 	if (snakeHeadRow < 0 || snakeHeadRow > this.board.size - 1 || snakeHeadCol < 0 || snakeHeadCol > this.board.size -1)
 	{
 		this.lose = true;
-		alert("you lose!");
+		this.sound.stopAudio();
+		this.loseSound.startAudio();
+		this.requestStart();
 	}
 }
 
@@ -96,15 +115,30 @@ Game.prototype.LoseBySelfTouch = function ()
 		if (snakeHeadRow === row && snakeHeadCol === col)
 		{
 			this.lose = true;
-			alert("you lose!");
+			this.sound.stopAudio();
+			this.loseSound.startAudio();
+			this.requestStart();
 		}
 	}
 
 }
 
-Game.prototype.Start = function () 
+Game.prototype.requestStart = function()
+{
+			$('.score').text('Eugene lost! Press Spacebar to restart!');
+			$(document).keyup(function(e)
+			{
+				if (e.which === 32)
+				{
+				location.reload();
+				}
+			});
+}
+
+Game.prototype.Start = function ()
 {
 	var thisGame = this;
+	thisGame.sound.startAudio();
 	var startGame = setInterval(function ()
 	{
 		thisGame.Turn();
@@ -114,3 +148,4 @@ Game.prototype.Start = function ()
 		}
 	}, 70);
 }
+
