@@ -9,7 +9,7 @@ function Game ()
 {
 	this.snake = new Snake();
 	this.lose = false;
-	this.board = new Board(50);
+	this.board = new Board(30);
 	this.board.generateBoard();
 	this.apple = new Apple(this.board.size);
 	this.generateApple();
@@ -27,6 +27,7 @@ Game.prototype.Turn = function ()
 		this.board.disActivateApple(this.apple.coordinates[0],this.apple.coordinates[1]);
 		this.generateApple();
 		this.snake.eatenApple = false;
+		this.board.displayScore(this.snake.score);
 	}
 	this.board.disActivateCell(lastRowCoord, lastColCoord);
 	this.CheckLose();
@@ -106,5 +107,5 @@ Game.prototype.Start = function ()
 		{
 			clearInterval(startGame);
 		}
-	}, 50);
+	}, 70);
 }

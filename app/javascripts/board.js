@@ -17,6 +17,10 @@ function Board(size) {
   this.size = size;
 }
 
+Board.prototype.displayScore = function (score) {
+  $('.score').text("Your score: " + score);
+}
+
 Board.prototype.activateCell = function(r,c){
   $("div#r_" + r + "-" + "c_" + c ).addClass("active");
 };
@@ -44,8 +48,8 @@ Board.prototype.renderSnakeCoords = function (snakeArray) {
     var colCell = snakeArray[i][1];
     this.activateCell(rowCell, colCell);
   }
-
 };
+
 
 
 //
