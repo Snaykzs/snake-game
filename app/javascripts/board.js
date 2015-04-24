@@ -17,6 +17,10 @@ function Board(size) {
   this.size = size;
 }
 
+Board.prototype.displayScore = function (score) {
+  $('.score').text("Your score: " + score);
+}
+
 Board.prototype.activateCell = function(r,c){
   $("div#r_" + r + "-" + "c_" + c ).addClass("active");
 };
@@ -31,6 +35,7 @@ Board.prototype.activateApple = function(r,c){
 
 Board.prototype.disActivateApple = function(r,c){
     $("div#r_" + r + "-" + "c_" + c ).removeClass("apple");
+    $("div#r_" + r + "-" + "c_" + c ).removeClass("head");
 };
 
 Board.prototype.isSnake = function(r, c){
@@ -38,15 +43,28 @@ Board.prototype.isSnake = function(r, c){
 };
 
 Board.prototype.renderSnakeCoords = function (snakeArray) {
-  for (var i = 0; i < snakeArray.length; i++)
+  for (var i = 0; i < snakeArray.length-1; i++)
   {
     var rowCell = snakeArray[i][0];
     var colCell = snakeArray[i][1];
     this.activateCell(rowCell, colCell);
   }
-
 };
 
+Board.prototype.renderSnakeHead = function (snakeArray)
+{
+  var headRow = snakeArray[snakeArray.length-1][0];
+  var headCol = snakeArray[snakeArray.length-1][1];
+  this.activateHeadCell(headRow,headCol);
+}
+
+Board.prototype.activateHeadCell = function(r,c){
+  $("div#r_" + r + "-" + "c_" + c ).addClass("head");
+};
+
+Board.prototype.disActivateHeadCell = function (r,c){
+  $("div#r_" + r + "-" + "c_" + c ).removeClass("head");
+}
 
 //
 // isActivecell(); - determines whether cell should be active (contains part of snake)

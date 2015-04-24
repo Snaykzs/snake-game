@@ -6,31 +6,41 @@
   border: 2px solid #000;
   line-height: 0px;*/
   /*height: 500px;*/
-  max-width: 500px;
+  max-width: 450px;
+  height: 450px;
   margin: 0 auto;
   line-height: 0px;
   border: 1px solid #E5E5E5;
-  background-color: #F1F1F1;
+/*  background-color: #F1F1F1;*/
   border-radius: 3px;
   box-shadow: 0px 4px 1px -1px #C1C1C1;
   padding: 5px;
+  background-image: url("../images/grass.jpg");
 }
 
 .cell {
-  background-color: #DDDEEE;
-  width: 10px;
-  height: 10px;
+/*  background-color: #DDDEEE;*/
+  width: 15px;
+  height: 15px;
   display: inline-block;
 }
 
+
 .active {
-  background-color: red;
+  background-color: black;
+  /*border: 1px solid #ccc;*/
+}
+
+.head {
+  background-image: url("../images/eugene.png");
+  background-size: contain;
   /*border: 1px solid #ccc;*/
 }
 
 .apple {
-  background-color: green;
-  /*background: url("apple.png") no-repeat;*/
+/*  background-color: red;*/
+  background-image: url("apple.png");
+  background-size: contain;
 }
 header{
   margin: 0 auto;
@@ -42,7 +52,7 @@ header{
 }
 .score{
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 450px;
   border: 1px solid red;
   text-align: center;
   padding: 12px;
