@@ -8,8 +8,16 @@
   position: fixed;
 }
 
+.each-control {
+	margin-left: 30px;
+}
+
+.row ul {
+	font-style: 0.9em;
+}
+
 .btn {
-	border-color:#3A4C7D;border-width: 0px 0px 2px 0px;border-style: solid; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+	border-color:#3A4C7D;border-width: 0px 0px 2px 0px;border-style: solid; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 3px 10px 3px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
 }
 .btn:hover {
 
